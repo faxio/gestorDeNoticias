@@ -6,7 +6,7 @@ const Home = () => {
     const [nombre, setNombre] = useState('')
 
      useEffect ( () => {
-        axios.get('http://127.0.0.1:8000/api/todo')
+        axios.get('http://127.0.0.1:8000/api/user')
         .then(res => {
         setNombre(res.data)
     })
