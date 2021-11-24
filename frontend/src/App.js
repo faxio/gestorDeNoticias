@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -11,9 +11,17 @@ import TodosLosAnalisis from "./pages/TodosLosAnalisis";
 import Mensajes from "./pages/Mensajes";
 import Rango from "./pages/Rango";
 import Configuracion from "./pages/Configuracion";
-
+import axios from "axios";
 
 function App() {
+
+  
+  /*
+  const addTodoHandler = () => {
+    axios.post('http://localhost:8000/api/todo/', { 'title': title, 'description': desc })
+      .then(res => console.log(res))
+};
+*/
   return (
     <BrowserRouter>
         <div >
