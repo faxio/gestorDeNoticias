@@ -78,15 +78,13 @@ const Register = () => {
                       </InputGroup>
                     </FormControl>
                   </Stack>
-                  <Button
-                    px={100}
+                  <button          
                     type="submit"
-                    marginTop="15px"
-                    colorScheme="blue"
                     onClick={addTodoHandler}
+                    className="boton"
                   >
                     Registrate
-                  </Button>
+                  </button>
                 </Box>
               </Box>
             </Flex>

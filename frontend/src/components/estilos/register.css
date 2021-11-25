@@ -20,10 +20,17 @@
   color: #2b6777;
   font-family: Arial, Helvetica, sans-serif, cursive;
 }
+.boton {
+  background-color: black;
+  border-radius: 4px;
+  color: white;
+  font-size: 1em;
+  font-family: "Comfortaa", cursive;
+  margin-top: 1.2em;
+  width: 15em;
+  height: 2em;
+}
 body {
   background-color: #52ab98;
   color: green;
-}
-input {
-  background-color: #2b6777;
 }
