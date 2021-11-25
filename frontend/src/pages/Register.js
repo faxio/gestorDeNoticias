@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import {Box, Center} from "@chakra-ui/react"
-import {StarIcon} from "@chakra-ui/icons"
+import {Box,Stack, Heading, FormControl, Input, FormLabel, InputGroup,InputRightElement,Button, Text,Flex} from "@chakra-ui/react"
 
 const Register = () => {
-
+    const [show, setShow] = useState(false);
+    const handleClick = () => setShow(!show);
     const [datos, setDatos] = useState({
         email: "",
         password: "",
@@ -14,42 +14,72 @@ const Register = () => {
           [event.target.name]: event.target.value,
         });
       };
+      const enviarDatos = (event) => {
+        event.preventDefault();
+      };
+      const enviar = () =>{
+          console.log(datos)
+      }
     
       return (
-        <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-    
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
-
-            </Box>
-    
-            <Box
-              mt="1"
-              fontWeight="semibold"
-              as="h4"
-              lineHeight="tight"
-              isTruncated
-              
-            >
-             <Center> Registrarse </Center>
-            </Box>
-    
-            <Box>
-                    <input />
-              <Box as="span" color="gray.600" fontSize="sm">
-                / wk
+        <>
+        <Box >
+          <Flex align="right" justify="center" p="10">
+            <Flex minHeight="2vh"  className="forms">
+              <Box
+                width="fit-content"
+                p="10"
+                maxWidth="50vh"
+                maxHeight="60vh"
+              >
+                <Box className="fondologin">
+                  <Stack onSubmit={enviarDatos}>
+                    <Text textAlign="center" className="textoP">Crear cuenta</Text>
+  
+                    <FormControl>
+                      <FormLabel>Email</FormLabel>
+                      <Input
+                        onChange={handleInputChange}
+                        placeholder="Your Email"
+                        type="text"
+                        name="email"
+                        variant="black"
+                      />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Constraseña</FormLabel>
+                      <InputGroup>
+                        <Input
+                          onChange={handleInputChange}
+                          placeholder="Escriba su contraseña"
+                          name="password"
+                          type={show ? "text" : "password"}
+                          variant="black"
+                        />
+                        <InputRightElement width="4.5rem">
+                          <Button h="1.75rem" size="xs" onClick={handleClick}>
+                            {show ? "Hide" : "Show"}
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup>
+                    </FormControl>
+                  </Stack>
+                  <Button
+                    px={100}
+                    type="submit"
+                    marginTop="15px"
+                    colorScheme="blue"
+                    onClick={enviar}
+                  >
+                    Registrate
+                  </Button>
+                </Box>
               </Box>
-            </Box>
-    
-            <Box display="flex" mt="2" alignItems="center">
-             
-              <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                reviews
-              </Box>
-            </Box>
-          </Box>
+            </Flex>
+          </Flex>
         </Box>
+        </>
       )
-    }
+      }
 
 export default Register;

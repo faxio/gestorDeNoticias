@@ -90,3 +90,15 @@
   border: none;
   width: 120px;
 }
+.forms{
+  background-color: rgb(126, 223, 126);
+  border-color: blue;
+  border: solid 1px;
+  border-radius: 15px;
+  text-transform: capitalize;
+}
+.textoP{
+  padding-bottom: 1.5em;
+  color: black;
+  font-family: 'Comfortaa', cursive;
+}
