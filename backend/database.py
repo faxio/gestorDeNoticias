@@ -7,8 +7,8 @@ enlace = "mongodb+srv://fabio:" + \
     str(config.password) + \
     "@cluster0.io6tz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 client = motor.motor_asyncio.AsyncIOMotorClient(enlace)
-database = client.prueba
-collection = database.dato1
+database = client.FNNDA
+collection = database.Usuarios
 
 
 async def fetch_one_user(title):
@@ -22,3 +22,9 @@ async def fetch_all_user():
     async for document in cursor:
         user.append(Usuarios(**document))
     return user
+
+
+async def fetch_create_user(Usuario):
+    document = Usuario
+    result = await collection.insert_one(document)
+    return document

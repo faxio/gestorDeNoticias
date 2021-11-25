@@ -1,22 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ChakraProvider } from "@chakra-ui/react"
 
-import Navbar from "./components/Navbar";
-import Register from "./pages/Register";
+import Rutas from "./routers/Rutas";
 
 function App() {
 
   
-  /*
-  const addTodoHandler = () => {
-    axios.post('http://localhost:8000/api/todo/', { 'title': title, 'description': desc })
-      .then(res => console.log(res))
-};
-*/
+ 
   return (
     <>
     <ChakraProvider>
-      <Navbar/>
+      <Rutas/>
       </ChakraProvider>
     </>
   );

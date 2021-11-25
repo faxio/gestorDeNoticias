@@ -1,0 +1,29 @@
+.forms {
+  background-color: white;
+  border-color: blue;
+  border: solid 1px;
+  border-radius: 15px;
+  text-transform: capitalize;
+}
+.textoP {
+  padding-bottom: 0.5em;
+  font-size: 1.2em;
+  font-family: "Comfortaa", cursive;
+}
+.textoSubtitulo {
+  font-family: "Comfortaa", cursive;
+  font-size: 1em;
+}
+.heading {
+  text-align: center;
+  padding-top: 1em;
+  color: #2b6777;
+  font-family: Arial, Helvetica, sans-serif, cursive;
+}
+body {
+  background-color: #52ab98;
+  color: green;
+}
+input {
+  background-color: #2b6777;
+}

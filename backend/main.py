@@ -5,7 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from database import (
     fetch_one_user,
-    fetch_all_user
+    fetch_all_user,
+    fetch_create_user
 )
 
 app = FastAPI()
@@ -35,3 +36,11 @@ async def get_todo_by_nombre(user):
 async def get_user():
     response = await fetch_all_user()
     return response
+
+
+@app.post("/api/todo/", response_model=Usuarios)
+async def post_todo(todo: Usuarios):
+    response = await fetch_create_user(todo.dict())
+    if response:
+        return response
+    raise HTTPException(400, "Something went wrong")
