@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { ChakraProvider } from "@chakra-ui/react"
 
 import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
@@ -15,7 +15,9 @@ function App() {
 */
   return (
     <>
+    <ChakraProvider>
       <Navbar/>
+      </ChakraProvider>
     </>
   );
 }

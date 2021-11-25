@@ -44,7 +44,7 @@ const Navbar = () => {
         </div>
       <Routes>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/" render={() => <Home />} />
+        <Route path="/" element={ <Home />} />
         <Route path="/populares" element={<Populares />} />
         <Route path="/analisis" element={<TodosLosAnalisis />} />
         <Route path="/mensajes" element={<Mensajes />} />
