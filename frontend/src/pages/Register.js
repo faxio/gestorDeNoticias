@@ -1,15 +1,29 @@
 import React, {useState} from 'react'
-import {Box,Stack, FormControl, Input, FormLabel, InputGroup,InputRightElement,Button, Heading,Flex,Text} from "@chakra-ui/react"
+import {Box,Stack,useToast, FormControl, Input, FormLabel, InputGroup,InputRightElement,Button, Heading,Flex,Text} from "@chakra-ui/react"
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import '../components/estilos/register.css'
 
 const Register = () => {
-
-   
+  let navigate = useNavigate();
+  const toast = useToast()
   const addTodoHandler = () => {
+    if( datos.nombre === "" || datos.email === "" || datos.password === "")
+    toast({
+      title: "Error, algo salio mal",
+      description: "Se necesita rellenar todos los campos",
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    })
+    else 
     axios.post('http://localhost:8000/api/user/', { 'nombre': datos.nombre, 'correo': datos.email, 'password':datos.password })
-      .then(res => console.log(res))
+      .then(res => {toast({
+        title: "Cuenta Creada Correctamente",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      }); navigate("/login");})
   };
 
     const [show, setShow] = useState(false);
