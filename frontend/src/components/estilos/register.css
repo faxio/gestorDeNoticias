@@ -9,6 +9,7 @@
   padding-bottom: 0.5em;
   font-size: 1.2em;
   font-family: "Comfortaa", cursive;
+  text-align: center;
 }
 .textoSubtitulo {
   font-family: "Comfortaa", cursive;
@@ -29,8 +30,32 @@
   margin-top: 1.2em;
   width: 15em;
   height: 2em;
+  margin-bottom: 0.6em;
 }
-body {
-  background-color: #52ab98;
-  color: green;
+.textoRed2 {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+.boton2 {
+  position: relative;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  border-color: black;
+  color: black;
+  font-size: 1em;
+  font-family: "Comfortaa", cursive;
+  text-align: center;
+  padding: 3px 3px;
+}
+.textoRedireccionador {
+  color: #000;
+  text-decoration: underline;
+}
+
+.boton2:hover {
+  color: #fff;
+  background-color: #000;
 }

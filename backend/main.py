@@ -6,7 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from database import (
     fetch_one_user,
     fetch_all_user,
-    fetch_create_user
+    fetch_create_user,
+    fetch_one_user_clave
 )
 
 app = FastAPI()
@@ -23,10 +24,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+'''
 @app.get("/api/user/{user}", response_model=Usuarios)
 async def get_todo_by_nombre(user):
     response = await fetch_one_user(user)
+    if response:
+        return response
+    raise HTTPException(404, f"No existe el usuario con el nombre: {user}")
+'''
+
+
+@app.get("/api/user/{user}", response_model=Usuarios)
+async def get_todo_by_correo(user: str, passw: str):
+    response = await fetch_one_user_clave(user, passw)
     if response:
         return response
     raise HTTPException(404, f"No existe el usuario con el nombre: {user}")
@@ -38,7 +48,7 @@ async def get_user():
     return response
 
 
-@app.post("/api/todo/", response_model=Usuarios)
+@app.post("/api/user/", response_model=Usuarios)
 async def post_todo(todo: Usuarios):
     response = await fetch_create_user(todo.dict())
     if response:

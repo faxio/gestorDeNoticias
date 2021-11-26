@@ -12,7 +12,7 @@ collection = database.Usuarios
 
 
 async def fetch_one_user(title):
-    document = await collection.find_one({"nombre": title})
+    document = await collection.find_one({"correo": title})
     return document
 
 
@@ -27,4 +27,9 @@ async def fetch_all_user():
 async def fetch_create_user(Usuario):
     document = Usuario
     result = await collection.insert_one(document)
+    return document
+
+
+async def fetch_one_user_clave(user, passw):
+    document = await collection.find_one({"$and": [{"correo": user, "password": passw}]})
     return document

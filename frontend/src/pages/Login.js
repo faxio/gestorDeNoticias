@@ -1,21 +1,34 @@
 import React, {useState} from 'react'
-import {Box,Stack, FormControl, Input, FormLabel, InputGroup,InputRightElement,Button, Heading,Flex,Text} from "@chakra-ui/react"
+import {Box,Stack, FormControl,useToast, Input, FormLabel, InputGroup,InputRightElement,Button, Heading,Flex, Text} from "@chakra-ui/react"
 import axios from 'axios';
-import {Link} from 'react-router-dom'
 import '../components/estilos/register.css'
+import { Link, useNavigate} from 'react-router-dom';
+const Login = () => {
 
-const Register = () => {
+    let navigate = useNavigate();
+    const toast = useToast()
 
-   
-  const addTodoHandler = () => {
-    axios.post('http://localhost:8000/api/user/', { 'nombre': datos.nombre, 'correo': datos.email, 'password':datos.password })
-      .then(res => console.log(res))
-  };
+    const addTodoHandler = () => {
+        axios.get(`http://localhost:8000/api/user/${datos.email}?passw=${datos.password}`)
+          .then(res => { toast({
+          title: "Cuenta Iniciada Correctamente",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        }); navigate("/"); })
+          .catch(res => {toast({
+            title: "Error, algo salio mal",
+            description: "Su correo o contraseña esta mal",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          }); });
+      };
+
 
     const [show, setShow] = useState(false);
     const handleClick = () => setShow(!show);
     const [datos, setDatos] = useState({
-        nombre: "",
         email: "",
         password: "",
       });
@@ -28,13 +41,9 @@ const Register = () => {
       const enviarDatos = (event) => {
         event.preventDefault();
       };
-    
-      return (
+    return (
         <div className="fondo">
-        <Heading className="heading">Gestor de Noticias</Heading>
-          <Box >
-            <Text className="textoRed2">Tienes cuenta? <Link to="/login" className="boton2">Inicia sesión</Link></Text>
-          </Box>
+            <Heading className="heading">Gestor de Noticias</Heading>
         <Box padding="10">
           <Flex align="right" justify="center" p="10">
             <Flex minHeight="2vh"  className="forms">
@@ -42,20 +51,12 @@ const Register = () => {
                 width="fit-content"
                 p="10"
                 maxWidth="50vh"
-                maxHeight="60vh"
+                maxHeight="37vh"
               >
                 <Box className="fondologin">
                   <Stack onSubmit={enviarDatos}>
-                    <FormLabel textAlign="center" className="textoP">Crear cuenta</FormLabel>
-                    <FormControl>
-                      <FormLabel className="textoSubtitulo">Nombre</FormLabel>
-                      <Input
-                        onChange={handleInputChange}
-                        placeholder="Nickname"
-                        type="text"
-                        name="nombre"
-                      />
-                    </FormControl>
+                    <FormLabel textAlign="center" className="textoP">Iniciar Sesión</FormLabel>
+                
                     <FormControl>
                       <FormLabel className="textoSubtitulo">Email</FormLabel>
                       <Input
@@ -87,15 +88,18 @@ const Register = () => {
                     onClick={addTodoHandler}
                     className="boton"
                   >
-                    Registrate
+                    Login
                   </button>
+                    <Box >
+                        <Text >Nuevo en el gestor? <Link to="/register" className="textoRedireccionador">Registrate</Link></Text>
+                    </Box>
                 </Box>
               </Box>
             </Flex>
           </Flex>
         </Box>
         </div>
-      )
-      }
+    )
+}
 
-export default Register;
+export default Login
