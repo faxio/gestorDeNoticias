@@ -1,13 +1,16 @@
 # api
 from fastapi import FastAPI, HTTPException
-from model import Usuarios
+from model import Usuarios, NoticiasAnalisadas
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import (
     fetch_one_user,
     fetch_all_user,
     fetch_create_user,
-    fetch_one_user_clave
+    fetch_one_user_clave,
+    fetch_create_analisis,
+    fetch_all_analisis,
+    fetch_por_categoria
 )
 
 app = FastAPI()
@@ -54,3 +57,22 @@ async def post_todo(todo: Usuarios):
     if response:
         return response
     raise HTTPException(400, "Something went wrong")
+
+#####################################################
+# Noticias
+@app.post("/api/noticias/", response_model=NoticiasAnalisadas)
+async def post_noticias(todo: NoticiasAnalisadas):
+    response = await fetch_create_analisis(todo.dict())
+    if response:
+        return response
+    raise HTTPException(400, "Something went wrong")
+
+@app.get("/api/noticias")
+async def get_noticias():
+    response = await fetch_all_analisis()
+    return response
+
+@app.get("/api/noticias/{category}", response_model=NoticiasAnalisadas)
+async def get_noticia_categoria(categoria: str):
+    response = await fetch_por_categoria(categoria)
+    return response
