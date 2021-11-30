@@ -4,6 +4,9 @@
   display: flex;
   grid-template-columns: auto auto auto auto;
 }
+.cardsHome{
+  display: inline-block;
+}
 
 .navbar {
   position: sticky;

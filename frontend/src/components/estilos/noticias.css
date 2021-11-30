@@ -1,0 +1,13 @@
+.card{
+    padding: 10px;
+    display: inline-flex;
+    color: black;
+    min-width: 300px;
+}
+.forma{
+    display: inline;
+}
+.elementos{
+    max-height: 300px;
+    max-width: 300px;
+}

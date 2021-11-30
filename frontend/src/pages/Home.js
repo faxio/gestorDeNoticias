@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
-import Datos from '../components/Datos'
+import React from 'react'
+import { Noticias } from '../components/Noticias'
 
 const Home = () => {
+    /*
     const [nombre, setNombre] = useState('')
 
      useEffect ( () => {
@@ -10,11 +10,13 @@ const Home = () => {
         .then(res => {
         setNombre(res.data)
     })
-  })
+  })*/
     return (
         <div>
             <h1>¿Que hay de nuevo?</h1>
-            <Datos datos={nombre}/>
+            <div className="cardsHome">
+                <Noticias category="deportes"/>
+            </div>
         </div>
     )
 }

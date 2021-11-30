@@ -45,13 +45,13 @@ const Login = () => {
         <div className="fondo">
             <Heading className="heading">Gestor de Noticias</Heading>
         <Box padding="10">
-          <Flex align="right" justify="center" p="10">
+          <Flex align="right" justify="center" p="12">
             <Flex minHeight="2vh"  className="forms">
               <Box
                 width="fit-content"
                 p="10"
                 maxWidth="50vh"
-                maxHeight="37vh"
+                maxHeight="45vh"
               >
                 <Box className="fondologin">
                   <Stack onSubmit={enviarDatos}>
