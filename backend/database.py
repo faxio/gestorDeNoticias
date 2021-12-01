@@ -1,6 +1,6 @@
 from typing import Collection
 import motor.motor_asyncio
-from model import Usuarios, NoticiasAnalisadas
+from model import Usuarios, NoticiasAnalisadas, Categorias
 import config
 
 enlace = "mongodb+srv://fabio:" + \
@@ -39,12 +39,16 @@ async def fetch_one_user_clave(user, passw):
 collection2 = database.Noticias
 
 # Agregar una noticia
+
+
 async def fetch_create_analisis(NoticiasAnalisadas):
     document = NoticiasAnalisadas
     result = await collection2.insert_one(document)
     return document
 
 # conseguir todos los analsis
+
+
 async def fetch_all_analisis():
     noticias = []
     cursor = collection2.find({})
@@ -52,6 +56,46 @@ async def fetch_all_analisis():
         noticias.append(NoticiasAnalisadas(**document))
     return noticias
 
+
 async def fetch_por_categoria(categoria):
-    document = await collection2.find_one({"category": categoria})
+    noticias = []
+    cursor = collection2.find({"category": categoria})
+    async for document in cursor:
+        noticias.append(NoticiasAnalisadas(**document))
+    return noticias
+
+
+async def fetch_por_analista(analista):
+    noticias = []
+    cursor = collection2.find({"analista": analista})
+    async for document in cursor:
+        noticias.append(NoticiasAnalisadas(**document))
+    return noticias
+
+
+async def update_noticias(title, analista, analisis):
+    await collection2.update_one({"title": title}, {"$set": {"analista": analista, "analisis": analisis}})
+    document = await collection2.find_one({"title": title})
     return document
+
+############# Conexión con las noticias #################
+collection3 = database.Categorias
+
+
+async def fetch_all_categorias():
+    categorias = []
+    cursor = collection3.find({})
+    async for document in cursor:
+        categorias.append(Categorias(**document))
+    return categorias
+
+
+async def fetch_create_categoria(categoria):
+    document = categoria
+    result = await collection3.insert_one(document)
+    return document
+
+
+async def remove_categoria(categoria):
+    await collection3.delete_one({"categoria": categoria})
+    return True

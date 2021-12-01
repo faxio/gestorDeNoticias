@@ -2,6 +2,7 @@ from typing import Optional
 from pydantic import BaseModel
 from datetime import date, datetime, time, timedelta
 
+
 class Usuarios(BaseModel):
     nombre: str
     correo: str
@@ -14,12 +15,21 @@ class NoticiasAnalisadas(BaseModel):
     title: str
     analisis: Optional[str]
     analista: Optional[str]
-    description:str
-    url:str
+    description: str
+    url: str
     fecha: str
     numVistas: Optional[int]
     category: Optional[list[str]]
 
+    class Config:
+        orm_mode = True
+
+
+class Categorias(BaseModel):
+    categoria: str
+
+
+'''
 m = NoticiasAnalisadas(
     author="fabio",
     content="deded",
@@ -33,3 +43,4 @@ m = NoticiasAnalisadas(
     #category=["depoter","comida"]
 )
 print(m.dict())
+'''
