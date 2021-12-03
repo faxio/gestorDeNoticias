@@ -7,6 +7,7 @@ class Usuarios(BaseModel):
     nombre: str
     correo: str
     password: str
+    rango: str
 
 
 class NoticiasAnalisadas(BaseModel):

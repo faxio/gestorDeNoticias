@@ -1,5 +1,6 @@
 import React from 'react'
-import { Noticias } from '../components/Noticias'
+import NoticiasAnalisadas from '../components/NoticiasAnalisadas';
+
 
 const Home = () => {
     /*
@@ -14,9 +15,7 @@ const Home = () => {
     return (
         <div>
             <h1>¿Que hay de nuevo?</h1>
-            <div className="cardsHome">
-                <Noticias category="deportes"/>
-            </div>
+            <NoticiasAnalisadas category="deportes" api={"http://localhost:8000/api/noticias"} />
         </div>
     )
 }

@@ -11,6 +11,14 @@
   font-family: "Comfortaa", cursive;
   text-align: center;
 }
+.formsEtiquetas {
+  padding: 10px;
+}
+.textoP2 {
+  padding-top: 1em;
+  font-size: 1.2em;
+  font-family: "Comfortaa", cursive;
+}
 .textoSubtitulo {
   font-family: "Comfortaa", cursive;
   font-size: 1em;

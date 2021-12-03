@@ -43,7 +43,7 @@ async def get_todo_by_nombre(user):
 
 
 @app.get("/api/user/{user}", response_model=Usuarios)
-async def get_todo_by_correo(user: str, passw: str):
+async def get_user_by_correo(user: str, passw: str):
     response = await fetch_one_user_clave(user, passw)
     if response:
         return response
@@ -81,19 +81,20 @@ async def get_noticias():
     return response
 
 
-@app.get("/api/noticias/v1/{category}")
-async def get_noticia_categoria(categoria: str):
-    response = await fetch_por_categoria(categoria)
+@app.get("/api/noticias/{category}")
+async def get_noticia_categoria(category: str):
+    response = await fetch_por_categoria(category)
     return response
 
-
+'''
 @app.get("/api/noticias/v2/{analista}")
 async def get_noticia_analista(analista: str):
     response = await fetch_por_analista(analista)
     return response
+'''
 
 
-@app.put("/api/noticias/{title}/", response_model=NoticiasAnalisadas)
+@app.put("/api/noticias/{title}", response_model=NoticiasAnalisadas)
 async def put_noticia(title: str, analista: str, analisis: str):
     response = await update_noticias(title, analista, analisis)
     if response:

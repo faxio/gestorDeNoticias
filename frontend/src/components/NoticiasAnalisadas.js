@@ -1,30 +1,37 @@
 import React, {useEffect, useState} from 'react'
-import Noticia from './Noticia'
+import NoticiaAnalisada from './NoticiaAnalisada'
 import axios from 'axios'
 import { Accordion } from '@chakra-ui/accordion'
 
-export const Noticias = (props) => {
-
-    //Consiguiendo noticias
+const NoticiasAnalisadas = (props) => {
     const [nombre, setNombre] = useState([])
+    let url = props.api
+    if (props.category !== "")
+        url = props.api +"/"+ props.category
 
-    const direccion = 'https://newsapi.org/v2/everything?q=Apple&from=2021-11-30&sortBy=popularity&apiKey=ae411c4b8a0b419f94c5d6e3017b9f78';
+    const llamar = () => {
+        axios.get(`${url}`)
+        .then(res => {
+        setNombre(res.data); 
+    });
+    }
     useEffect ( () => {
-       axios.get(direccion)
-       .then(res => {
-       setNombre(res.data.articles)
-   })
- },[])
+        const interval = setInterval(() => {
+            llamar()
+        }, 100)
+       return () => clearInterval(interval)
+ })
+
     return (
         <div >
             <Accordion > 
             {nombre.map((noticia, index)=>{
                 return(
                 <div key={index} className="forma">
-                    <Noticia title={noticia.title} 
+                    <NoticiaAnalisada title={noticia.title} 
                              subtexto={noticia.description}
                              contenido={noticia.content}
-                             categoria={props.category} />
+                             categoria={noticia.category} />
                 </div>
                 //console.log(noticia.author)
                 ) 
@@ -33,3 +40,5 @@ export const Noticias = (props) => {
         </div>
     )
 }
+
+export default NoticiasAnalisadas

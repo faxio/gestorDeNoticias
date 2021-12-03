@@ -1,9 +1,10 @@
 import React from 'react'
+import Busqueda from '../components/Busqueda'
 
 const TodosLosAnalisis = () => {
     return (
         <div>
-            <h1>Escriba la etiqueta</h1>
+            <Busqueda/>
         </div>
     )
 }

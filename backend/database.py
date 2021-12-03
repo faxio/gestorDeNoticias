@@ -59,7 +59,7 @@ async def fetch_all_analisis():
 
 async def fetch_por_categoria(categoria):
     noticias = []
-    cursor = collection2.find({"category": categoria})
+    cursor = collection2.find({"category": {'$regex': categoria}})
     async for document in cursor:
         noticias.append(NoticiasAnalisadas(**document))
     return noticias

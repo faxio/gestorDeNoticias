@@ -17,7 +17,7 @@ const Register = () => {
       isClosable: true,
     })
     else 
-    axios.post('http://localhost:8000/api/user/', { 'nombre': datos.nombre, 'correo': datos.email, 'password':datos.password })
+    axios.post('http://localhost:8000/api/user/', { 'nombre': datos.nombre, 'correo': datos.email, 'password':datos.password, 'rango':'usuario' })
       .then(res => {toast({
         title: "Cuenta Creada Correctamente",
         status: "success",
