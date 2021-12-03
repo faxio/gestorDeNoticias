@@ -18,7 +18,7 @@ const NoticiasAnalisadas = (props) => {
     useEffect ( () => {
         const interval = setInterval(() => {
             llamar()
-        }, 100)
+        }, 1000)
        return () => clearInterval(interval)
  })
 

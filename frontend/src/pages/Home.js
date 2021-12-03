@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <div>
             <h1>¿Que hay de nuevo?</h1>
-            <NoticiasAnalisadas category="deportes" api={"http://localhost:8000/api/noticias"} />
+            <NoticiasAnalisadas category="deportes" api={"http://217.71.206.44/api/noticias"} />
         </div>
     )
 }

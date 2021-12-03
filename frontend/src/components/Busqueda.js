@@ -1,25 +1,23 @@
-import React, {useState,useEffect} from 'react'
-import {Stack, FormControl, Input, FormLabel, InputRightElement, Button} from "@chakra-ui/react"
-import axios from 'axios';
+import React, {useState} from 'react'
+import {Stack, FormControl, Input, FormLabel} from "@chakra-ui/react"
 import NoticiasAnalisadas from './NoticiasAnalisadas';
 
 
 const Busqueda = () => {
 
+    /*
     const [nombre, setNombre] = useState([])
     useEffect ( () => {
-        axios.get(`http://localhost:8000/api/noticias/v1/${cate.categoria}`)
+        axios.get(`http://217.71.206.44/noticias/v1/${cate.categoria}`)
         .then(res => {
         setNombre(res.data); 
     })
   },[])
-    const handleClick = () => setTexto(cate);
-
+*/
     
     const [cate, setCate] = useState({
         categoria:"",
     });
-    const [texto,setTexto] = useState(cate)
     const handleInputChange = (event) =>{
         setCate({
             ...cate,[event.target.name]:event.target.value,
@@ -42,7 +40,7 @@ const Busqueda = () => {
                       />
                     </FormControl>
                     
-                    <NoticiasAnalisadas category={cate.categoria} api={"http://localhost:8000/api/noticias"}/>
+                    <NoticiasAnalisadas category={cate.categoria} api={"http://217.71.206.44/api/noticias"}/>
             </Stack>
         </div>
     )
