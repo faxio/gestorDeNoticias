@@ -9,7 +9,7 @@ const Login = () => {
     const toast = useToast()
 
     const addTodoHandler = () => {
-        axios.get(`http://localhost:8000/api/user/${datos.email}?passw=${datos.password}`)
+        axios.get(`http://217.71.206.44/api/user/${datos.email}?passw=${datos.password}`)
           .then(res => { toast({
           title: "Cuenta Iniciada Correctamente",
           status: "success",
