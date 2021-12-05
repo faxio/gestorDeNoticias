@@ -24,7 +24,11 @@ export const Noticias = (props) => {
                     <Noticia title={noticia.title} 
                              subtexto={noticia.description}
                              contenido={noticia.content}
-                             categoria={props.category} />
+                             categoria={props.category}
+                             author={noticia.author}
+                             fecha={noticia.publishedAt} 
+                            url= {noticia.url}
+                             />
                 </div>
                 //console.log(noticia.author)
                 ) 
