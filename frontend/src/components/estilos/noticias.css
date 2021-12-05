@@ -11,3 +11,9 @@
   max-height: 300px;
   max-width: 300px;
 }
+.prueba {
+  color: black;
+  font-size: 1em;
+  font-family: "Comfortaa", cursive;
+  text-transform: capitalize;
+}

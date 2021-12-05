@@ -49,9 +49,9 @@ const Noticia = (props) => {
             <div>
                 <AccordionButton>
                     <div className="card" >
-                    <h1>{props.title}</h1>
+                    <h1 className="textoTitulo" >{props.title}</h1>
                     
-                    <Badge colorScheme='purple'>{props.categoria}</Badge>
+                    <Badge style={{margin:"0px 10px"}} colorScheme='purple'>{props.categoria}</Badge>
                     </div>
                 </AccordionButton>
             </div>
@@ -59,8 +59,8 @@ const Noticia = (props) => {
             <Box pb={4} >
                 {props.contenido}
             </Box>
-            <FormLabel >Analisis</FormLabel>
-            <Textarea onChange={handleInputChange} value={datos}/>
+            <FormLabel className="textoTitulo">Analisis</FormLabel>
+            <Textarea className="textoParrafo" onChange={handleInputChange} value={datos}/>
             <HStack>
             <Select onChange={obtenerCategoria} className="prueba" placeholder="Seleccione una categoria">
             {all.map((cat, index) =>{

@@ -21,6 +21,7 @@ const Navbar = () => {
               <Link className="navbar" to="/populares">Analisis Populares</Link>
               <Link className="navbar" to="/analisis">Todos los Analisis</Link>
               <div>
+              
               <nav className="menu">
                   <ul>
                       <li><button className="usuario" >Usuario</button>

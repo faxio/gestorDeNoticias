@@ -67,3 +67,18 @@
   color: #fff;
   background-color: #000;
 }
+.boton3 {
+  color: black;
+  font-size: 1em;
+  font-family: "Comfortaa", cursive;
+}
+.textoTitulo {
+  color: black;
+  font-size: 1em;
+  font-family: "Comfortaa", cursive;
+}
+.textoParrafo {
+  color: #303030;
+  font-size: 0.9em;
+  font-family: "Comfortaa", cursive;
+}

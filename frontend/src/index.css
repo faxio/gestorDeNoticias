@@ -4,7 +4,7 @@
   display: flex;
   grid-template-columns: auto auto auto auto;
 }
-.cardsHome{
+.cardsHome {
   display: inline-block;
 }
 
@@ -33,7 +33,7 @@
 .menu ul {
   position: absolute;
   right: 0.5em;
-  top: 0.7em;
+  top: 0.45em;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -41,9 +41,10 @@
 .menu ul button {
   display: block;
   color: #000;
-  padding: 1em;
+  padding: 0.4em;
   font-family: sans-serif;
-  background-color: #2e518b;
+  font-size: 15px;
+  background-color: cyan;
   text-decoration: none;
 }
 
@@ -52,12 +53,13 @@
   border: none;
   text-decoration: none;
   color: #000;
-  padding: 8px;
+  padding: 7px;
   margin: 4px 0px;
   font-family: sans-serif;
   background-color: cyan;
   float: none;
   width: 120px;
+  font-size: 12px;
 }
 
 .menu ul li {
@@ -87,6 +89,7 @@
 
 .menu ul li:hover > ul {
   display: block;
+  z-index: 1;
 }
 .usuario {
   position: relative;

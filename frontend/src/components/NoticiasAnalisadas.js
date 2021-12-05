@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState } from 'react'
 import NoticiaAnalisada from './NoticiaAnalisada'
 import axios from 'axios'
 import { Accordion } from '@chakra-ui/accordion'
@@ -16,22 +16,26 @@ const NoticiasAnalisadas = (props) => {
     });
     }
     useEffect ( () => {
+        let abortController = new AbortController();
         const interval = setInterval(() => {
             llamar()
         }, 1000)
-       return () => clearInterval(interval)
+       return () => {  abortController.abort();  clearInterval(interval);}
  })
 
     return (
         <div >
-            <Accordion > 
+            <Accordion allowToggle > 
             {nombre.map((noticia, index)=>{
                 return(
                 <div key={index} className="forma">
                     <NoticiaAnalisada title={noticia.title} 
                              subtexto={noticia.description}
                              contenido={noticia.content}
-                             categoria={noticia.category} />
+                             categoria={noticia.category} 
+                             analista={noticia.analista}
+                             analisis={noticia.analisis}
+                             />
                 </div>
                 //console.log(noticia.author)
                 ) 
