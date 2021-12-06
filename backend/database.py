@@ -78,6 +78,12 @@ async def update_noticias(title, analista, analisis):
     document = await collection2.find_one({"title": title})
     return document
 
+
+async def agregar_categoria(title, categoria):
+    await collection2.update_one({"title": title}, {"$push": {'category': categoria}})
+    document = await collection2.find_one({"title": title})
+    return document
+
 ############# Conexión con las noticias #################
 collection3 = database.Categorias
 

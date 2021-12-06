@@ -14,7 +14,8 @@ const Busqueda = () => {
     })
   },[])
 */
-    
+        
+
     const [cate, setCate] = useState({
         categoria:"",
     });

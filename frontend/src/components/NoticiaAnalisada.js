@@ -1,9 +1,41 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import "../components/estilos/noticias.css"
-import { Badge,FormLabel,Collapse, Tag,Divider,Box,AccordionItem, Stack,AccordionButton, AccordionPanel } from '@chakra-ui/react'
+import { Badge,FormLabel,Collapse, 
+    Tag,Divider,Box,AccordionItem,
+    Stack,AccordionButton, AccordionPanel,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+    Button,
+    Select
+} from '@chakra-ui/react'
+import axios from 'axios'
 
 const NoticiaAnalisada = (props) => {
 
+    const addTodoHandler = () =>{
+        axios.put(`http://localhost:8000/api/noticiasC/${props.title}?category=${cate}`)
+    }
+    const [cate, setCate] = useState('deportes')
+    const obtenerCategoria = (e) => {
+        let index = e.target.selectedIndex;
+        setCate('' + e.target.options[index].text)
+    }
+
+    let [all, setAll] = useState([]);
+    useEffect(() => {
+       axios.get('http://217.71.206.44/api/categorias/')
+       .then(res => {
+           setAll(res.data);
+      })
+    }, [])
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [show, setShow] = React.useState(false)
     const handleToggle = () => setShow(!show)
     const categoria= props.categoria
@@ -19,6 +51,7 @@ const NoticiaAnalisada = (props) => {
                             <Badge key={index} colorScheme='purple'>{cat}</Badge>
                         )
                     })}
+ 
                     </Stack>
                     
                     </div>
@@ -50,10 +83,41 @@ const NoticiaAnalisada = (props) => {
                             {show ? 'Cerrar' : 'Mostrar'} noticia
                         </button>
                     </FormLabel>
-                <Collapse startingHeight={1} in={show}>
-                   <p className="textoParrafo"> {props.contenido} </p>
+                <Collapse style={{margin:"6px 0px" }} startingHeight={1} in={show}>
+                   <p className="textoParrafo" > {props.contenido} </p>
                 </Collapse>
+                <Divider/>
+                    <FormLabel >
+                        <button style={{margin:"6px 0px -3px 0px" }} className="boton3"  onClick={onOpen} >
+                            Agregar Etiquetas
+                        </button>
+                        </FormLabel>
 
+                        <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay />
+                            <ModalContent>
+                            <ModalHeader className="textoTitulo">Seleccione la etiqueta</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody pb={6}>
+                                 <Select onChange={obtenerCategoria} className="prueba" placeholder="Seleccione una categoria">
+                                    {all.map((cat, index) =>{
+                                        return(
+                                        <option  value={cat.categoria} key={index}>{cat.categoria}</option>
+                                        )
+                                    })}
+                
+                                </Select>
+                            </ModalBody>
+
+                            <ModalFooter>
+                                <Button onClick={addTodoHandler} colorScheme='blue' mr={3}>
+                                Agregar
+                                </Button>
+                                <Button onClick={onClose}>Cancel</Button>
+                            </ModalFooter>
+                            </ModalContent>
+                        </Modal>
+                    
                 </Box>
             </Stack>
             </AccordionPanel>

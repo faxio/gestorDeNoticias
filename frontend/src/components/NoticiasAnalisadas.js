@@ -6,22 +6,25 @@ import { Accordion } from '@chakra-ui/accordion'
 const NoticiasAnalisadas = (props) => {
     const [nombre, setNombre] = useState([])
     let url = props.api
+
     if (props.category !== "")
         url = props.api +"/"+ props.category
 
-    const llamar = () => {
+    useEffect ( () => {
+        let abortController = new AbortController();
+        const interval = setInterval(() => {
         axios.get(`${url}`)
         .then(res => {
         setNombre(res.data); 
     });
-    }
-    useEffect ( () => {
-        let abortController = new AbortController();
-        const interval = setInterval(() => {
-            llamar()
-        }, 1000)
-       return () => {  abortController.abort();  clearInterval(interval);}
- })
+
+        },1000)
+       return () => {  
+           abortController.abort();  
+           clearInterval(interval);
+           setNombre([]);
+        }
+ },[url])
 
     return (
         <div >

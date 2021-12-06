@@ -15,7 +15,8 @@ from database import (
     update_noticias,
     fetch_all_categorias,
     fetch_create_categoria,
-    remove_categoria
+    remove_categoria,
+    agregar_categoria
 )
 
 app = FastAPI()
@@ -97,6 +98,14 @@ async def get_noticia_analista(analista: str):
 @app.put("/api/noticias/{title}", response_model=NoticiasAnalisadas)
 async def put_noticia(title: str, analista: str, analisis: str):
     response = await update_noticias(title, analista, analisis)
+    if response:
+        return response
+    raise HTTPException(404, f"There is no todo with the title {title}")
+
+
+@app.put("/api/noticiasC/{title}", response_model=NoticiasAnalisadas)
+async def put_noticia(title: str, category: str):
+    response = await agregar_categoria(title, category)
     if response:
         return response
     raise HTTPException(404, f"There is no todo with the title {title}")
