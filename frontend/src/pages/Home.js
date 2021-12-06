@@ -1,6 +1,6 @@
 import React from 'react'
 import NoticiasAnalisadas from '../components/NoticiasAnalisadas';
-
+import ContEtiquetas from '../components/ContEtiquetas';
 
 const Home = () => {
     /*
@@ -14,7 +14,8 @@ const Home = () => {
   })*/
     return (
         <div>
-            <h1>¿Que hay de nuevo?</h1>
+            
+            <ContEtiquetas/>
             <NoticiasAnalisadas category="deportes" api={"http://217.71.206.44/api/noticias"} />
         </div>
     )

@@ -13,10 +13,15 @@ const Noticia = (props) => {
 
     let [all, setAll] = useState([]);
     useEffect(() => {
+        let abortController = new AbortController();
        axios.get('http://217.71.206.44/api/categorias/')
        .then(res => {
            setAll(res.data);
       })
+      return () => {
+        abortController.abort();
+        setAll([])
+      }
     }, [])
 
     const addTodoHandler = () =>{
