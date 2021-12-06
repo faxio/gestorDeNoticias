@@ -19,7 +19,7 @@ import axios from 'axios'
 const NoticiaAnalisada = (props) => {
 
     const addTodoHandler = () =>{
-        axios.put(`http://localhost:8000/api/noticiasC/${props.title}?category=${cate}`)
+        axios.put(`http://217.71.206.44/api/noticiasC/${props.title}?category=${cate}`)
     }
     const [cate, setCate] = useState('deportes')
     const obtenerCategoria = (e) => {
