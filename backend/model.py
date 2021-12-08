@@ -28,6 +28,7 @@ class NoticiasAnalisadas(BaseModel):
 
 class Categorias(BaseModel):
     categoria: str
+    url: str
 
 
 '''
