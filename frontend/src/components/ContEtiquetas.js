@@ -2,15 +2,30 @@ import React, { useState,useEffect } from 'react'
 import {Text,Box, Image } from '@chakra-ui/react'
 import NoticiasAnalisadas from './NoticiasAnalisadas'
 import './estilos/carrusel.css'
-import { Imagenes } from './Imagenes'
+//import { Imagenes } from './Imagenes'
+import axios from 'axios'
 
 const ContEtiquetas = () => {
 
     const [cat, setCat] = useState("deportes")
     const [current, setCurrent] = useState(0);
-    const length = Imagenes.length;
-    const [wsize, setWsize] = useState(window.innerWidth);
 
+    const [wsize, setWsize] = useState(window.innerWidth);
+    const [Imagenes, setImagenes] = useState([])
+
+    useEffect(() => {
+        let abortController = new AbortController();
+       axios.get('http://217.71.206.44/api/categorias/')
+       .then(res => {
+        setImagenes(res.data);
+      })
+      return () => {
+        abortController.abort();
+        setImagenes([])
+      }
+    }, [])
+
+    const length = Imagenes.length;
     useEffect(() => {
         let abortController = new AbortController();
         const handleresize = () => setWsize(window.innerWidth)
@@ -43,9 +58,9 @@ const ContEtiquetas = () => {
                 <button className="boton6"  onClick={prevSlide}> {"<"}</button>
                 {wsize > 760 ?
                     <Box>
-                        <Image boxSize='300px' src={Imagenes[current === 0 ? length - 1 : current - 1].image} />
-                        <button className="boton10" onClick={e => {setCat(Imagenes[current === 0 ? length - 1 : current - 1].category)}}>
-                        {Imagenes[current === 0 ? length - 1 : current - 1].category}
+                        <Image boxSize='300px' src={Imagenes[current === 0 ? length - 1 : current - 1].url} />
+                        <button className="boton10" onClick={e => {setCat(Imagenes[current === 0 ? length - 1 : current - 1].categoria)}}>
+                        {Imagenes[current === 0 ? length - 1 : current - 1].categoria}
                         </button>
                     </Box>
                 : <></>}
@@ -55,17 +70,17 @@ const ContEtiquetas = () => {
                         key={index}>
                         {(index===current) && (
                             <Box >
-                                <Image boxSize='300px' src={imagen.image}  />
-                                <button className="boton10" onClick={e => {setCat(imagen.category)}}>{imagen.category}</button>
+                                <Image boxSize='300px' src={imagen.url}  />
+                                <button className="boton10" onClick={e => {setCat(imagen.category)}}>{imagen.categoria}</button>
                             </Box>
                         )}</div>
                         )
                 })}
                 {wsize > 1060 ?
                 <Box>
-                <Image boxSize='300px' src={Imagenes[current === length - 1 ? 0 : current + 1].image} />
-                <button className="boton10" onClick={e => {setCat(Imagenes[current === length - 1 ? 0 : current + 1].category)}}>
-                    {Imagenes[current === length - 1 ? 0 : current + 1].category}
+                <Image boxSize='300px' src={Imagenes[current === length - 1 ? 0 : current + 1].url} />
+                <button className="boton10" onClick={e => {setCat(Imagenes[current === length - 1 ? 0 : current + 1].categoria)}}>
+                    {Imagenes[current === length - 1 ? 0 : current + 1].categoria}
                 </button>
                 </Box>
                 : <></>}
