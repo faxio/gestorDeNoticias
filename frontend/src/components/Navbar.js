@@ -10,6 +10,7 @@ import {
   import TodosLosAnalisis from "../pages/TodosLosAnalisis";
   import Mensajes from "../pages/Mensajes";
   import Rango from "../pages/Rango";
+import CrearEtiquetas from './CrearEtiquetas.js'
 
 const Navbar = () => {
     return (
@@ -20,6 +21,7 @@ const Navbar = () => {
               </Link>
               <Link className="navbar" to="/populares">Analisis Populares</Link>
               <Link className="navbar" to="/analisis">Todos los Analisis</Link>
+		<CrearEtiquetas/>
               <div>
               
               <nav className="menu">
