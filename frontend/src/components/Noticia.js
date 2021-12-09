@@ -5,6 +5,7 @@ import axios from 'axios'
 
 const Noticia = (props) => {
 
+    const nombre = localStorage.getItem("nombre");
     const [cate, setCate] = useState('deportes')
     const obtenerCategoria = (e) => {
         let index = e.target.selectedIndex;
@@ -31,7 +32,7 @@ const Noticia = (props) => {
                                                         'content':props.contenido,
                                                         'title':props.title,
                                                         'analisis':datos,
-                                                        'analista':'fulanito',
+                                                        'analista':nombre,
                                                         'description':props.subtexto,
                                                         'url':props.url,
                                                         'fecha':props.fecha,

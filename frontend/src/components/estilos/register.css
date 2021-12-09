@@ -19,6 +19,39 @@
   font-size: 1.2em;
   font-family: "Comfortaa", cursive;
 }
+.textoP2 {
+  padding-top: 1em;
+  font-size: 1.2em;
+  font-family: "Comfortaa", cursive;
+  text-transform: capitalize;
+}
+.textoP3 {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  font-size: 1.2em;
+  font-family: "Comfortaa", cursive;
+}
+.textoP4 {
+  padding-top: 1em;
+  padding-left: 0.8em;
+  padding-bottom: 0.1em;
+  font-size: 1.2em;
+  font-family: "Comfortaa", cursive;
+}
+.textoP5 {
+  padding-left: 0.8em;
+  padding-bottom: 1em;
+  font-size: 1.2em;
+  font-family: "Comfortaa", cursive;
+}
+.textoP6 {
+  padding-left: 0.8em;
+  margin-top: 0.4em;
+  padding-bottom: 0.2em;
+  font-size: 1em;
+  font-family: "Comfortaa", cursive;
+}
 .textoSubtitulo {
   font-family: "Comfortaa", cursive;
   font-size: 1em;
@@ -58,6 +91,35 @@
   text-align: center;
   padding: 3px 3px;
 }
+.boton8 {
+  position: relative;
+  background-color: #4caf50;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  border-color: black;
+  color: white;
+  font-size: 1em;
+  font-family: "Comfortaa", cursive;
+  text-align: center;
+  padding: 4px 4px;
+  margin-top: 0.9em;
+  margin-right: 0.4em;
+}
+.boton9 {
+  position: relative;
+  background-color: #f44336;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  border-color: black;
+  color: white;
+  font-size: 1em;
+  font-family: "Comfortaa", cursive;
+  text-align: center;
+  padding: 4px 4px;
+  margin-right: 0.1em;
+}
 .textoRedireccionador {
   color: #000;
   text-decoration: underline;
@@ -82,4 +144,13 @@
   color: #303030;
   font-size: 0.9em;
   font-family: "Comfortaa", cursive;
+}
+
+.boton8:hover {
+  background-color: #23d827;
+  border-color: #23d827;
+}
+.boton9:hover {
+  background-color: #ff1302;
+  border-color: #ff1302;
 }

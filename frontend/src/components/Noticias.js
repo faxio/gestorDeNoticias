@@ -15,7 +15,7 @@ export const Noticias = (props) => {
        .then(res => {
        setNombre(res.data.articles)
    })
-   return () => { abortController.abort(); }
+   return () => { abortController.abort(); setNombre([])}
  },[])
     return (
         <div >

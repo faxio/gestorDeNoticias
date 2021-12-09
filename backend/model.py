@@ -31,6 +31,11 @@ class Categorias(BaseModel):
     url: str
 
 
+class Solicitud(BaseModel):
+    nombre: str
+    justificacion: str
+
+
 '''
 m = NoticiasAnalisadas(
     author="fabio",

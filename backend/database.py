@@ -1,6 +1,6 @@
 from typing import Collection
 import motor.motor_asyncio
-from model import Usuarios, NoticiasAnalisadas, Categorias
+from model import Usuarios, NoticiasAnalisadas, Categorias, Solicitud
 import config
 
 enlace = "mongodb+srv://fabio:" + \
@@ -104,4 +104,28 @@ async def fetch_create_categoria(categoria):
 
 async def remove_categoria(categoria):
     await collection3.delete_one({"categoria": categoria})
+    return True
+
+############# Solicitud de ser analizador ##########
+collection4 = database.Solicitud
+
+
+async def fetch_all_solicitudes():
+    solicitudes = []
+    cursor = collection4.find({})
+    async for document in cursor:
+        solicitudes.append(Solicitud(**document))
+    return solicitudes
+
+
+async def fetch_create_solicitud(solicitud):
+    document = solicitud
+    result = await collection4.insert_one(document)
+    return document
+
+
+async def responder_solicitud(nombre, opcion):
+    if opcion == "aceptar":
+        await collection.update_one({"nombre": nombre}, {"$set": {"rango": "analista"}})
+    await collection4.delete_one({"nombre": nombre})
     return True

@@ -2,7 +2,6 @@ import React, { useState,useEffect } from 'react'
 import {Text,Box, Image } from '@chakra-ui/react'
 import NoticiasAnalisadas from './NoticiasAnalisadas'
 import './estilos/carrusel.css'
-//import { Imagenes } from './Imagenes'
 import axios from 'axios'
 
 const ContEtiquetas = () => {
@@ -13,12 +12,15 @@ const ContEtiquetas = () => {
     const [wsize, setWsize] = useState(window.innerWidth);
     const [Imagenes, setImagenes] = useState([])
 
+    async function addTodoHandler () {
+        await axios.get('http://217.71.206.44/api/categorias/')
+        .then(res => {
+         setImagenes(res.data);
+       })
+    }
     useEffect(() => {
         let abortController = new AbortController();
-       axios.get('http://217.71.206.44/api/categorias/')
-       .then(res => {
-        setImagenes(res.data);
-      })
+        addTodoHandler();
       return () => {
         abortController.abort();
         setImagenes([])
@@ -71,7 +73,7 @@ const ContEtiquetas = () => {
                         {(index===current) && (
                             <Box >
                                 <Image boxSize='300px' src={imagen.url}  />
-                                <button className="boton10" onClick={e => {setCat(imagen.category)}}>{imagen.categoria}</button>
+                                <button className="boton10" onClick={e => {setCat(imagen.categoria)}}>{imagen.categoria}</button>
                             </Box>
                         )}</div>
                         )

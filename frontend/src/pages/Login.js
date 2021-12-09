@@ -3,26 +3,34 @@ import {Box,Stack, FormControl,useToast, Input, FormLabel, InputGroup,InputRight
 import axios from 'axios';
 import '../components/estilos/register.css'
 import { Link, useNavigate} from 'react-router-dom';
+
 const Login = () => {
 
     let navigate = useNavigate();
     const toast = useToast()
 
-    const addTodoHandler = () => {
-        axios.get(`http://217.71.206.44/api/user/${datos.email}?passw=${datos.password}`)
+    async function addTodoHandler () {
+        await axios.get(`http://217.71.206.44/api/user/${datos.email}?passw=${datos.password}`)
           .then(res => { toast({
           title: "Cuenta Iniciada Correctamente",
           status: "success",
           duration: 9000,
           isClosable: true,
-        }); navigate("/"); })
+        });
+        //localStorage.setItem("rango", res.data[0].rango);
+        localStorage.setItem("rango", res.data.rango);
+        localStorage.setItem("nombre", res.data.nombre);
+        localStorage.setItem("contraseña", datos.password);
+        localStorage.setItem("correo", datos.email);
+        navigate("/");
+      })
           .catch(res => {toast({
             title: "Error, algo salio mal",
             description: "Su correo o contraseña esta mal",
             status: "error",
             duration: 9000,
             isClosable: true,
-          }); });
+          });  });
       };
 
 

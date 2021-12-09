@@ -18,7 +18,7 @@ const NoticiasAnalisadas = (props) => {
         setNombre(res.data); 
     });
 
-        },1000)
+        },500)
        return () => {  
            abortController.abort();  
            clearInterval(interval);
