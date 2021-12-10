@@ -8,12 +8,12 @@ export const Noticias = (props) => {
     //Consiguiendo noticias
     const [nombre, setNombre] = useState([])
 
-    const direccion = 'https://newsapi.org/v2/everything?q=Apple&from=2021-11-30&sortBy=popularity&apiKey=ae411c4b8a0b419f94c5d6e3017b9f78';
+    const direccion = 'http://217.71.206.44/api/noticiasin';
     useEffect ( () => {
        let abortController = new AbortController();
        axios.get(direccion)
        .then(res => {
-       setNombre(res.data.articles)
+       setNombre(res.data)
    })
    return () => { abortController.abort(); setNombre([])}
  },[])

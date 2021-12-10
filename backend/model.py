@@ -35,6 +35,16 @@ class Solicitud(BaseModel):
     nombre: str
     justificacion: str
 
+class Noticias(BaseModel):
+    author: str
+    content: str
+    title: str
+    description: str
+    url: str
+    publishedAt: str
+
+    class Config:
+        orm_mode = True
 
 '''
 m = NoticiasAnalisadas(

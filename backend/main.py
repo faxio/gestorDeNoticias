@@ -1,6 +1,6 @@
 # api
 from fastapi import FastAPI, HTTPException
-from model import Usuarios, NoticiasAnalisadas, Categorias, Solicitud
+from model import Usuarios, NoticiasAnalisadas, Categorias, Solicitud, Noticias
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import (
@@ -19,7 +19,9 @@ from database import (
     agregar_categoria,
     fetch_all_solicitudes,
     responder_solicitud,
-    fetch_create_solicitud
+    fetch_create_solicitud,
+    fetch_all_noticias,
+    fetch_create_noticias
 )
 
 app = FastAPI()
@@ -161,3 +163,17 @@ async def eliminar_solicitud(solicitud: str, opcion: str):
     if response:
         return "Solicitud resuelta correctamente"
     raise HTTPException(404, f"No existe: {solicitud}")
+
+
+@app.post("/api/noticiasin/", response_model=Noticias)
+async def post_noticias_sin_analisis(todo: Noticias):
+    response = await fetch_create_noticias(todo.dict())
+    if response:
+        return response
+    raise HTTPException(400, "Something went wrong")
+
+
+@app.get("/api/noticiasin")
+async def get_noticias():
+    response = await fetch_all_noticias()
+    return response

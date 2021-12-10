@@ -1,6 +1,6 @@
 from typing import Collection
 import motor.motor_asyncio
-from model import Usuarios, NoticiasAnalisadas, Categorias, Solicitud
+from model import Usuarios, NoticiasAnalisadas, Categorias, Solicitud, Noticias
 import config
 
 enlace = "mongodb+srv://fabio:" + \
@@ -129,3 +129,19 @@ async def responder_solicitud(nombre, opcion):
         await collection.update_one({"nombre": nombre}, {"$set": {"rango": "analista"}})
     await collection4.delete_one({"nombre": nombre})
     return True
+
+collection5 = database.NoticiasSinAnalisis
+
+
+async def fetch_all_noticias():
+    noticias = []
+    cursor = collection5.find({})
+    async for document in cursor:
+        noticias.append(Noticias(**document))
+    return noticias
+
+
+async def fetch_create_noticias(Noticias):
+    document = Noticias
+    result = await collection5.insert_one(document)
+    return document
