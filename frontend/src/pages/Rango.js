@@ -65,10 +65,10 @@ const Rango = () => {
                                 <h2 className='textoP6'> <Badge colorScheme="green">Usuario:</Badge> {solicitud.nombre} </h2>
                                 <h2 className='textoP6'> <Badge colorScheme="green">Justificacion:</Badge>   {solicitud.justificacion}</h2>
                                 <button className='boton8' onClick={async () => {
-                                    await axios.delete(`http://localhost:8000/api/solicitudes/${solicitud.nombre}?opcion=aceptar`)
+                                    await axios.delete(`http://217.71.206.44/api/solicitudes/${solicitud.nombre}?opcion=aceptar`)
                                 }}> Aceptar</button>
                                 <button className='boton9' onClick={async () => {
-                                    await axios.delete(`http://localhost:8000/api/solicitudes/${solicitud.nombre}?opcion=denegar`)
+                                    await axios.delete(`http://217.71.206.44/api/solicitudes/${solicitud.nombre}?opcion=denegar`)
                                 }}> Denegar</button>
                             </div>
                         )
