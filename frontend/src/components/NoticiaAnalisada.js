@@ -12,14 +12,22 @@ import { Badge,FormLabel,Collapse,
     ModalCloseButton,
     useDisclosure,
     Button,
-    Select
+    Select,
+    useToast,
 } from '@chakra-ui/react'
 import axios from 'axios'
 
 const NoticiaAnalisada = (props) => {
 
+    const toast = useToast()
+
     const addTodoHandler = () =>{
-        axios.put(`http://217.71.206.44/api/noticiasC/${props.title}?category=${cate}`)
+        axios.put(`http://217.71.206.44/api/noticiasC/${props.title}?category=${cate}`).then(res => {toast({
+            title: "Etiqueta Agregada Correctamente",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+        })})
     }
     const [cate, setCate] = useState('deportes')
     const obtenerCategoria = (e) => {
